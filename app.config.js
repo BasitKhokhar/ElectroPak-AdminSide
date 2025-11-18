@@ -1,13 +1,13 @@
 import 'dotenv/config';
 
 export default () => ({
-    expo: {
-      name: "Electro Pak Admin",
-      slug: "electropak-admin",
-      version: "1.0.0",
-      extra: {
-        API_BASE_URL: process.env.API_BASE_URL,
-            // ✅ Add Firebase keys here
+  expo: {
+    name: "Electro Pak Admin",
+    slug: "electropak-admin",
+    version: "1.0.0",
+    extra: {
+      API_BASE_URL: process.env.API_BASE_URL,
+      // ✅ Add Firebase keys here
       FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
       FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
       FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
@@ -16,7 +16,6 @@ export default () => ({
       FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
       FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
       FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASURMENT_ID,
-      },
     },
-  });
-  
+  },
+});

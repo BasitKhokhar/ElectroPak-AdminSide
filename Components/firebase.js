@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
-
+import Constants from "expo-constants";
 const {
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,

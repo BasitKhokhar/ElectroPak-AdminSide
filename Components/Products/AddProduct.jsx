@@ -4,7 +4,10 @@ import * as ImagePicker from 'expo-image-picker';
 import { storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Constants from 'expo-constants';
+import { colors } from "../Themes/colors";   // <<--- THEME IMPORT
+
 const API_BASE_URL = Constants.expoConfig.extra.API_BASE_URL;
+
 const AddProduct = () => {
     const [product, setProduct] = useState({
         name: '',
@@ -85,20 +88,68 @@ const AddProduct = () => {
     };
 
     return (
-        <View style={{ padding: 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginBottom: 10 }}>Add New Product</Text>
-            <TextInput placeholder="Product Name" value={product.name} onChangeText={(text) => handleChange('name', text)} style={styles.input} />
-            <TextInput placeholder="Price" value={product.price} onChangeText={(text) => handleChange('price', text)} keyboardType="numeric" style={styles.input} />
-            <TextInput placeholder="Subcategory ID" value={product.subcategory_id} onChangeText={(text) => handleChange('subcategory_id', text)} keyboardType="numeric" style={styles.input} />
-            <TextInput placeholder="Stock" value={product.stock} onChangeText={(text) => handleChange('stock', text)} style={styles.input} />
+        <View style={{ padding: 20, backgroundColor: colors.bodybackground, flex: 1 }}>
+            <Text style={{ 
+                fontSize: 20, 
+                fontWeight: 'bold', 
+                textAlign: 'center', 
+                marginBottom: 10,
+                color: colors.text 
+            }}>
+                Add New Product
+            </Text>
+
+            <TextInput 
+                placeholder="Product Name"
+                value={product.name}
+                onChangeText={(text) => handleChange('name', text)}
+                style={styles.input}
+                placeholderTextColor={colors.mutedText}
+            />
+
+            <TextInput 
+                placeholder="Price"
+                value={product.price}
+                onChangeText={(text) => handleChange('price', text)}
+                keyboardType="numeric"
+                style={styles.input}
+                placeholderTextColor={colors.mutedText}
+            />
+
+            <TextInput 
+                placeholder="Subcategory ID"
+                value={product.subcategory_id}
+                onChangeText={(text) => handleChange('subcategory_id', text)}
+                keyboardType="numeric"
+                style={styles.input}
+                placeholderTextColor={colors.mutedText}
+            />
+
+            <TextInput 
+                placeholder="Stock"
+                value={product.stock}
+                onChangeText={(text) => handleChange('stock', text)}
+                style={styles.input}
+                placeholderTextColor={colors.mutedText}
+            />
             
-            {product.image && <Image source={{ uri: product.image }} style={{ width: 100, height: 100, alignSelf: 'center' }} />}
-            <TouchableOpacity onPress={pickImage} style={styles.buttonimage}>
-                <Text style={styles.buttonText}>Select Image</Text>
+            {product.image && (
+                <Image 
+                    source={{ uri: product.image }} 
+                    style={{ width: 100, height: 100, alignSelf: 'center', marginVertical: 10 }} 
+                />
+            )}
+
+            {/* Image Button */}
+            <TouchableOpacity onPress={pickImage} style={styles.buttonSecondary}>
+                <Text style={styles.buttonSecondaryText}>Select Image</Text>
             </TouchableOpacity>
-            
-            <TouchableOpacity onPress={handleSubmit} style={styles.button} disabled={loading}>
-                {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Add Product</Text>}
+
+            {/* Submit Button */}
+            <TouchableOpacity onPress={handleSubmit} style={styles.buttonPrimary} disabled={loading}>
+                {loading ? <ActivityIndicator color="#fff" /> : (
+                    <Text style={styles.buttonPrimaryText}>Add Product</Text>
+                )}
             </TouchableOpacity>
         </View>
     );
@@ -107,25 +158,38 @@ const AddProduct = () => {
 const styles = {
     input: {
         borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 10,
-        marginVertical: 5,
-        borderRadius: 5,
+        borderColor: colors.border,
+        padding: 12,
+        marginVertical: 6,
+        borderRadius: 8,
+        backgroundColor: colors.cardsbackground,
+        color: colors.text,
     },
-    buttonimage:{ backgroundColor: 'green',
-        padding: 10,
-        marginVertical: 5,
-        borderRadius: 5,
-        alignItems: 'center',},
-    button: {
-        backgroundColor: '#007bff',
-        padding: 10,
-        marginVertical: 5,
-        borderRadius: 5,
+
+    buttonSecondary: { 
+        backgroundColor: colors.secondary,
+        padding: 12,
+        marginVertical: 8,
+        borderRadius: 8,
         alignItems: 'center',
     },
-    buttonText: {
-        color: '#fff',
+
+    buttonSecondaryText: {
+        color: colors.accent,
+        fontSize: 16,
+        fontWeight: '600',
+    },
+
+    buttonPrimary: {
+        backgroundColor: colors.primary,
+        padding: 12,
+        marginVertical: 8,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+
+    buttonPrimaryText: {
+        color: "#fff",
         fontSize: 16,
         fontWeight: 'bold',
     }
